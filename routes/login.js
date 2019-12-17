@@ -29,11 +29,10 @@ router.route("/").post((req, res) => {
               });
             });
           }
-        } else {
+        } else if (email === user[0].email && password !== user[0].password) {
+          console.log("Invalid password");
           res.json({ error: true, message: "Invalid password" });
         }
-      } else {
-        res.json({ error: true, message: "User does not exist" });
       }
     })
     .catch(err => res.status(400).json("Error: " + err));
